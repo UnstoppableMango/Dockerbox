@@ -1,0 +1,3 @@
+version: '2' # Portainer only supports v2 at the moment
+
+services:
