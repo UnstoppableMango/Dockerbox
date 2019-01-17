@@ -13,6 +13,8 @@ services:
     image: linuxserver/deluge
   pia-openvpn:
     container_name: pia
+    cap_add:
+      - NET_ADMIN
     ports:
       - '8112:8112'
     restart: always
