@@ -1,3 +1,26 @@
 version: '2' # Portainer only supports v2 at the moment
 
 services:
+  deluge:
+    container_name: deluge
+    network_mode: 'container:pia'
+    environment:
+      - TZ=America/Chicago
+    volumes:
+      - 'deluge-config:/config'
+      - 'deluge-downloads:/downloads'
+    restart: unless-stopped
+    image: linuxserver/deluge
+  pia-openvpn:
+    container_name: pia
+    ports:
+      - '8112:8112'
+    restart: always
+    dns:
+      - 209.222.18.222
+      - 209.222.18.218
+    environment:
+      - REGION=Netherlands
+      - USERNAME=${PIA_USER}
+      - PASSWORD=${PIA_PASS}
+    image: itsdaspecialk/pia-openvpn
